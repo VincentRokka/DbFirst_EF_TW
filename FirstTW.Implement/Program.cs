@@ -31,7 +31,7 @@ namespace FirstTW.Implement
             OutPut(list);
             Console.WriteLine("=============After Delete===================");
 
-            personService.Delete("id001");
+            personService.Delete(person);
 
             //var list2 = personService.GetAll().OrderBy(x=>x.FULLNAME);
             //OutPut(list2);

@@ -13,7 +13,7 @@ namespace FirstTW.Service
         IQueryable<TEntity> GetAllWithConditional(Expression<Func<TEntity, bool>> expression);
         void Insert(TEntity entity);
         void Update(TEntity entity);
-        void Delete(string id);
+        void Delete(TEntity entity);
         TEntity GetById(string id);
     }
 }

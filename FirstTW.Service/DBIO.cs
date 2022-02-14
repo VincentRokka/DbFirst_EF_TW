@@ -53,11 +53,11 @@ namespace FirstTW.Service
                 Console.WriteLine(e.Message);
             }
         }
-        public void Delete(string id)
+        public void Delete(TEntity entity)
         {
             try
             {
-                var entity = GetById(id);
+                //var entity = GetById(id);
                 context.Set<TEntity>().Remove(entity);
                 context.SaveChanges();
             }
