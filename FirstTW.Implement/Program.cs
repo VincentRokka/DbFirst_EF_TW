@@ -38,7 +38,7 @@ namespace FirstTW.Implement
 
             Console.WriteLine("=============Filtering===================");
             var nowTime = DateTime.Now;
-            var listFiltering = personService.GetAllWithConditional(p => nowTime.Year - p.DOB.Value.Year >= 18)
+            var listFiltering = personService.GetAllWithConditional(p => nowTime.Year - p.DOB.Value.Year >= 20)
                                              .OrderBy(x=>x.ID).ToPagedList(1,6);
             OutPut(listFiltering);
 
@@ -46,7 +46,7 @@ namespace FirstTW.Implement
             var listFiltering2 = personService.GetAllWithConditional(p => p.FULLNAME.ToUpper().Contains("MINH"))
                                               .OrderBy(x => x.ID).ToPagedList(1, 6);
             OutPut(listFiltering2);
-
+            
             Console.ReadKey();
 
         }
