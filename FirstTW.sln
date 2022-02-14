@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FirstTW", "FirstTW\FirstTW.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FirstTW.Service", "FirstTW.Service\FirstTW.Service.csproj", "{EFCD1BF3-4991-4D78-8967-BD59896CBC50}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FirstTW.Implement", "FirstTW.Implement\FirstTW.Implement.csproj", "{016143EF-AC8A-4103-8561-E5D0F0C03C8E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{EFCD1BF3-4991-4D78-8967-BD59896CBC50}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EFCD1BF3-4991-4D78-8967-BD59896CBC50}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EFCD1BF3-4991-4D78-8967-BD59896CBC50}.Release|Any CPU.Build.0 = Release|Any CPU
+		{016143EF-AC8A-4103-8561-E5D0F0C03C8E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{016143EF-AC8A-4103-8561-E5D0F0C03C8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{016143EF-AC8A-4103-8561-E5D0F0C03C8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{016143EF-AC8A-4103-8561-E5D0F0C03C8E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

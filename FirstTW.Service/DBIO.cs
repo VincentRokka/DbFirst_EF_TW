@@ -1,6 +1,7 @@
 ﻿using FirstTW.Model;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
@@ -14,31 +15,58 @@ namespace FirstTW.Service
 
         public IQueryable<TEntity> GetAll()
         {
-            throw new NotImplementedException();
+            return context.Set<TEntity>().AsQueryable();
         }
 
         public IQueryable<TEntity> GetAllWithConditional(Expression<Func<TEntity, bool>> expression)
         {
-            throw new NotImplementedException();
+            return context.Set<TEntity>().Where(expression).AsQueryable();
         }
 
         public TEntity GetById(string id)
         {
-            throw new NotImplementedException();
+            return context.Set<TEntity>().Find(id);
         }
 
         public void Insert(TEntity entity)
         {
-            throw new NotImplementedException();
+            try
+            {
+                context.Set<TEntity>().Add(entity);
+                context.SaveChanges();
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
         }
 
         public void Update(TEntity entity)
         {
-            throw new NotImplementedException();
+            try
+            {
+                context.Entry(entity).State = EntityState.Modified;
+                context.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
         }
         public void Delete(string id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var entity = GetById(id);
+                context.Set<TEntity>().Remove(entity);
+                context.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
         }
+
+
     }
 }
