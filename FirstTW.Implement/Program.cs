@@ -55,7 +55,7 @@ namespace FirstTW.Implement
         {
             foreach (PERSON i in list)
             {
-                Console.WriteLine($"{i.ID}\t{i.FULLNAME}\t{i.DOB}\t{i.DEPARTMENT}\t{i.SALARY}\t{i.NOTE}");
+                Console.WriteLine($"{i.ID}, {i.FULLNAME}, {i.DOB}, {i.DEPARTMENT}, {i.SALARY}, {i.NOTE}");
             }
         }
     }
