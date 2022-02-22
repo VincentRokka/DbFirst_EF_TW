@@ -18,7 +18,9 @@ namespace FirstTW.Model
         public string FULLNAME { get; set; }
         public Nullable<System.DateTime> DOB { get; set; }
         public Nullable<decimal> SALARY { get; set; }
-        public string DEPARTMENT { get; set; }
         public string NOTE { get; set; }
+        public Nullable<decimal> DEPARTMENTID { get; set; }
+    
+        public virtual DEPARTMENT DEPARTMENT { get; set; }
     }
 }

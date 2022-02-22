@@ -5,6 +5,13 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
       <Schema Namespace="Model.Store" Provider="Oracle.ManagedDataAccess.Client" ProviderManifestToken="12.1" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="DEPARTMENT">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="number" Precision="38" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DEPARTMENTNAME" Type="varchar2" MaxLength="10" />
+        </EntityType>
         <EntityType Name="PERSON">
           <Key>
             <PropertyRef Name="ID" />
@@ -13,17 +20,42 @@
           <Property Name="FULLNAME" Type="varchar2" MaxLength="100" />
           <Property Name="DOB" Type="date" />
           <Property Name="SALARY" Type="float" Precision="126" Scale="0" />
-          <Property Name="DEPARTMENT" Type="varchar2" MaxLength="100" />
           <Property Name="NOTE" Type="varchar2" MaxLength="100" />
+          <Property Name="DEPARTMENTID" Type="number" Precision="38" Scale="0" />
         </EntityType>
+        <Association Name="PERSON_DEPARTMENT_FK">
+          <End Role="DEPARTMENT" Type="Self.DEPARTMENT" Multiplicity="0..1" />
+          <End Role="PERSON" Type="Self.PERSON" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DEPARTMENT">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PERSON">
+              <PropertyRef Name="DEPARTMENTID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="ModelStoreContainer">
+          <EntitySet Name="DEPARTMENT" EntityType="Self.DEPARTMENT" Schema="COOLIEDNIKKEMATEDB" store:Type="Tables" />
           <EntitySet Name="PERSON" EntityType="Self.PERSON" Schema="COOLIEDNIKKEMATEDB" store:Type="Tables" />
+          <AssociationSet Name="PERSON_DEPARTMENT_FK" Association="Self.PERSON_DEPARTMENT_FK">
+            <End Role="DEPARTMENT" EntitySet="DEPARTMENT" />
+            <End Role="PERSON" EntitySet="PERSON" />
+          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="DEPARTMENT">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DEPARTMENTNAME" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="People" Relationship="Self.PERSON_DEPARTMENT_FK" FromRole="DEPARTMENT" ToRole="PERSON" />
+        </EntityType>
         <EntityType Name="PERSON">
           <Key>
             <PropertyRef Name="ID" />
@@ -32,11 +64,29 @@
           <Property Name="FULLNAME" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="DOB" Type="DateTime" />
           <Property Name="SALARY" Type="Decimal" Precision="38" Scale="0" />
-          <Property Name="DEPARTMENT" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="NOTE" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="DEPARTMENTID" Type="Decimal" Precision="38" Scale="0" />
+          <NavigationProperty Name="DEPARTMENT" Relationship="Self.PERSON_DEPARTMENT_FK" FromRole="PERSON" ToRole="DEPARTMENT" />
         </EntityType>
+        <Association Name="PERSON_DEPARTMENT_FK">
+          <End Role="DEPARTMENT" Type="Self.DEPARTMENT" Multiplicity="0..1" />
+          <End Role="PERSON" Type="Self.PERSON" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DEPARTMENT">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PERSON">
+              <PropertyRef Name="DEPARTMENTID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="ORCDbContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="DEPARTMENTs" EntityType="Self.DEPARTMENT" />
           <EntitySet Name="People" EntityType="Self.PERSON" />
+          <AssociationSet Name="PERSON_DEPARTMENT_FK" Association="Self.PERSON_DEPARTMENT_FK">
+            <End Role="DEPARTMENT" EntitySet="DEPARTMENTs" />
+            <End Role="PERSON" EntitySet="People" />
+          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
@@ -44,6 +94,14 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="ORCDbContext">
+          <EntitySetMapping Name="DEPARTMENTs">
+            <EntityTypeMapping TypeName="Model.DEPARTMENT">
+              <MappingFragment StoreEntitySet="DEPARTMENT">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="DEPARTMENTNAME" ColumnName="DEPARTMENTNAME" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="People">
             <EntityTypeMapping TypeName="Model.PERSON">
               <MappingFragment StoreEntitySet="PERSON">
@@ -51,8 +109,8 @@
                 <ScalarProperty Name="FULLNAME" ColumnName="FULLNAME" />
                 <ScalarProperty Name="DOB" ColumnName="DOB" />
                 <ScalarProperty Name="SALARY" ColumnName="SALARY" />
-                <ScalarProperty Name="DEPARTMENT" ColumnName="DEPARTMENT" />
                 <ScalarProperty Name="NOTE" ColumnName="NOTE" />
+                <ScalarProperty Name="DEPARTMENTID" ColumnName="DEPARTMENTID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

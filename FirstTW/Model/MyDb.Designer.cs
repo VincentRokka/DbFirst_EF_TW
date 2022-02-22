@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\D\Vip5\TeamWork\FirstTW\FirstTW\Model\ORCDbContext.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\Users\loc.tran\Source\Repos\DbFirst_EF_TW\FirstTW\Model\MyDb.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

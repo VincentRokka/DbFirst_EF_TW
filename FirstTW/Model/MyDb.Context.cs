@@ -25,6 +25,7 @@ namespace FirstTW.Model
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<DEPARTMENT> DEPARTMENTs { get; set; }
         public virtual DbSet<PERSON> People { get; set; }
     }
 }

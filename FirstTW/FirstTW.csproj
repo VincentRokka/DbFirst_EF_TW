@@ -56,50 +56,54 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Model\ORCDbContext.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ORCDbContext.Context.tt</DependentUpon>
+    <Compile Include="Model\DEPARTMENT.cs">
+      <DependentUpon>MyDb.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\ORCDbContext.cs">
+    <Compile Include="Model\MyDb.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ORCDbContext.tt</DependentUpon>
+      <DependentUpon>MyDb.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\ORCDbContext.Designer.cs">
+    <Compile Include="Model\MyDb.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ORCDbContext.edmx</DependentUpon>
+      <DependentUpon>MyDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\MyDb.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MyDb.edmx</DependentUpon>
     </Compile>
     <Compile Include="Model\PERSON.cs">
-      <DependentUpon>ORCDbContext.tt</DependentUpon>
+      <DependentUpon>MyDb.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <EntityDeploy Include="Model\ORCDbContext.edmx">
+    <EntityDeploy Include="Model\MyDb.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ORCDbContext.Designer.cs</LastGenOutput>
+      <LastGenOutput>MyDb.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="Model\ORCDbContext.edmx.diagram">
-      <DependentUpon>ORCDbContext.edmx</DependentUpon>
+    <None Include="Model\MyDb.edmx.diagram">
+      <DependentUpon>MyDb.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Content Include="Model\ORCDbContext.Context.tt">
+    <Content Include="Model\MyDb.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ORCDbContext.edmx</DependentUpon>
-      <LastGenOutput>ORCDbContext.Context.cs</LastGenOutput>
+      <DependentUpon>MyDb.edmx</DependentUpon>
+      <LastGenOutput>MyDb.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Model\ORCDbContext.tt">
+    <Content Include="Model\MyDb.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ORCDbContext.edmx</DependentUpon>
-      <LastGenOutput>ORCDbContext.cs</LastGenOutput>
+      <DependentUpon>MyDb.edmx</DependentUpon>
+      <LastGenOutput>MyDb.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

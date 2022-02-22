@@ -15,38 +15,45 @@ namespace FirstTW.Implement
         {
             PersonService personService = new PersonService();
             PERSON person = new PERSON() {
-                ID = "id001",
-                FULLNAME = "nameUpdated",
+                ID = "id004",
+                FULLNAME = "no",
                 DOB = new DateTime(2000, 5, 12),
-                DEPARTMENT = "QA updated",
-                SALARY = 10000,
-                NOTE = "great"
+                SALARY = 50,
+                NOTE = "great",
+                DEPARTMENTID = null
             };
 
             //personService.Insert(person);
 
-            //personService.Update(person);
+            personService.Update(person);
 
-            var list = personService.GetAll().OrderBy(x=>x.ID).ToPagedList(1, 5);
+            var list = personService.GetAll().OrderBy(x=>x.ID).ToPagedList(1, 20);
             OutPut(list);
-            Console.WriteLine("=============After Delete===================");
 
-            personService.Delete("id001");
+            Console.WriteLine("Data after Join Two Table");
+            var listJoin = personService.GetAllPersonWithDepartmentID().OrderByDescending(x => x.ID).ToPagedList(1, 15);
+            OutPut(listJoin);
+
+
+            //Console.WriteLine("=============After Delete===================");
+            //personService.Delete("id001");
 
             //var list2 = personService.GetAll().OrderBy(x=>x.FULLNAME);
             //OutPut(list2);
 
-            Console.WriteLine("=============Filtering===================");
-            var nowTime = DateTime.Now;
-            var listFiltering = personService.GetAllWithConditional(p => nowTime.Year - p.DOB.Value.Year >= 20)
-                                             .OrderBy(x=>x.ID).ToPagedList(1,6);
-            OutPut(listFiltering);
+            //Console.WriteLine("=============Filtering===================");
+            //var nowTime = DateTime.Now;
+            //var listFiltering = personService.GetAllWithConditional(p => nowTime.Year - p.DOB.Value.Year >= 20)
+            //                                 .OrderBy(x=>x.ID).ToPagedList(1,1);
+            //OutPut(listFiltering);
 
-            Console.WriteLine("=============Filtering2===================");
-            var listFiltering2 = personService.GetAllWithConditional(p => p.FULLNAME.ToUpper().Contains("MINH"))
-                                              .OrderBy(x => x.ID).ToPagedList(1, 6);
-            OutPut(listFiltering2);
-            
+            //Console.WriteLine("=============Filtering2===================");
+            //var listFiltering2 = personService.GetAllWithConditional(p => p.FULLNAME.ToUpper().Contains("MINH"))
+            //                                  .OrderBy(x => x.ID).ToPagedList(1, 1);
+            //OutPut(listFiltering2);
+
+
+
             Console.ReadKey();
 
         }
@@ -55,8 +62,10 @@ namespace FirstTW.Implement
         {
             foreach (PERSON i in list)
             {
-                Console.WriteLine($"{i.ID}, {i.FULLNAME}, {i.DOB}, {i.DEPARTMENT}, {i.SALARY}, {i.NOTE}");
+                var departmentName = i.DEPARTMENTID == null ? "Null" : i.DEPARTMENT.DEPARTMENTNAME;
+                Console.WriteLine($"{i.ID}, {i.FULLNAME}, {i.DOB}, {i.SALARY}, {i.NOTE}, {departmentName}");
             }
         }
+
     }
 }
